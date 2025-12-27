@@ -1,10 +1,12 @@
 const stripTrailing = (s = '') => s.replace(/\/+$/, '')
 const stripLeading = (s = '') => s.replace(/^\/+/, '')
 
+// Tambahkan console.log ini untuk DEBBUGING di browser nanti
 const BASE_URL = stripTrailing(process.env.NEXT_PUBLIC_API_BASE_URL || '')
+console.log("Current API URL:", BASE_URL); 
 
 function buildUrl(path = '') {
-    if(!BASE_URL) return path;
+    if(!BASE_URL) return path; // Jika BASE_URL kosong, dia akan menembak domain sendiri (404)
     return `${BASE_URL}/${stripLeading(String(path))}`;
 }
 
